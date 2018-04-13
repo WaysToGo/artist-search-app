@@ -5,7 +5,7 @@ class SearchApp{
   }
 // to get top youtube charts
 async getTopAlbums(){
-  const topAlbumResponse=await fetch(`https://www.theaudiodb.com/api/v1/json/1/trending.php?country=us&type=chart_youtube_track&format=albums`);
+  const topAlbumResponse=await fetch(`http://www.theaudiodb.com/api/v1/json/1/trending.php?country=us&type=chart_youtube_track&format=albums`);
 
   const topAlbumData= await topAlbumResponse.json();
 
@@ -16,7 +16,7 @@ async getTopAlbums(){
 }
 
 async getAlbumByArtistName(name){
-const albumResponseByName= await fetch(`https://www.theaudiodb.com/api/v1/json/1/searchalbum.php?s=${name}`);
+const albumResponseByName= await fetch(`http://www.theaudiodb.com/api/v1/json/1/searchalbum.php?s=${name}`);
 const albumData = await albumResponseByName.json();
 
 return{
