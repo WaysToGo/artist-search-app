@@ -1,15 +1,16 @@
-  //init search app
+//init search app
 const searchApp = new SearchApp;
 //init UI
 const ui = new UI;
 //Search artist
 const searchArtist = document.getElementById('searchArtist');
 
-
+// to load the top list on first load
 document.addEventListener('DOMContentLoaded', ()=>
 {
   searchApp.getTopAlbums().then(data => {
     if(data.topAlbumData.trending){
+      ///to render data to HTML
       ui.showTopAlbums(data.topAlbumData);
     }
   })
