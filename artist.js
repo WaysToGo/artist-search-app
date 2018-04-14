@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', ()=>
  })
 }, false);
 
+
+// HTTP calls
 async function getAlbumsById(id){
   const response=await fetch(`http://www.theaudiodb.com/api/v1/json/1/album.php?i=${id}`);
   const artistResponse= await fetch(`http://www.theaudiodb.com/api/v1/json/1/artist.php?i=${id}`)
@@ -18,11 +20,39 @@ async function getAlbumsById(id){
   };
 
 }
+async function getTrackDetailsById(id){
+  const response=await fetch(`http://www.theaudiodb.com/api/v1/json/1/track.php?m=${id}`);
+
+  const trackData= await response.json();
+
+  return{
+    trackData,
+      };
+
+}
+
+// UI changes
+
+function populateTrackDetails(id) {
+ let modelTitle = document.getElementById('model-album-title');
+ let modeltrackDetails = document.getElementById('model-track-list');
+getTrackDetailsById(id).then(data =>{
+  modelTitle.innerHTML=`${data.trackData.track[0].strAlbum}`;
+  modeltrackDetails.innerHTML=
+  `
+  <ul class="list-group">
+               ${data.trackData.track.map(data => `<li class="list-group-item">${data.strTrack} </li>`)}
+            </ul>
+  `
+
+} );
+}
+
 
 function showAlbums(albumData,artistData){
   let fragment = document.createDocumentFragment();
 
-console.log(albumData,artistData);
+
   //document.getElementById('remove').remove();
 
   let divElement=document.createElement('div');
@@ -64,7 +94,7 @@ console.log(albumData,artistData);
       <ul class="list-group">
         <li class="list-group-item">Year: ${element.intYearReleased}</li>
 
-        <button type="button" class="btn btn-primary btn-block mb-4" data-toggle="modal" data-target="#tracks">View Tracks</button>
+        <button type="button" class="btn btn-primary btn-block mb-4" data-toggle="modal" data-target="#tracks"  onclick="populateTrackDetails(${element.idAlbum})">View Tracks</button>
       </ul>
     </div>
   </div>

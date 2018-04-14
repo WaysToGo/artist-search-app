@@ -9,14 +9,13 @@ class UI{
     //retaining the scope
     let fragment=this.fragment;
     document.getElementById('remove').remove();
-    console.log(fragment);
+    let divElement=document.createElement('div');
+    divElement.setAttribute('id','remove');
     //iterating the list of albums
     artist.album.forEach(element => {
     // appending to document fragment stop repainting page everty time value changes
-    let divElement=document.createElement('div');
-    console.log(window.location.host+'/artist.html#'+element.idAlbum)
-    divElement.setAttribute('id','remove');
-    divElement.innerHTML=`<div class="card card-body mb-3">
+    let innerDiv=document.createElement('div');
+    innerDiv.innerHTML=`<div class="card card-body mb-3">
     <div class="row">
       <div class="col-md-3">
         <h6>${element.strAlbum}</h6>
@@ -26,7 +25,7 @@ class UI{
       </div>
       </div>
      `;
-
+     divElement.appendChild(innerDiv);
     // finally appending the value to the fragment
     fragment.appendChild(divElement);
 
@@ -41,13 +40,13 @@ class UI{
 
     //retaining the scope
     let fragment=this.fragment;
-
+    let divElement=document.createElement('div');
+    divElement.setAttribute('id','remove');
     //iterating the list of albums
     topAlbums.trending.forEach(element => {
 
-    let divElement=document.createElement('div');
-    divElement.setAttribute('id','remove');
-    divElement.innerHTML=`<div class="card card-body mb-3">
+      let innerDiv=document.createElement('div');
+    innerDiv.innerHTML=`<div class="card card-body mb-3">
     <div class="row">
       <div class="col-md-3">
         <h6>${element.strAlbum}</h6>
@@ -58,6 +57,7 @@ class UI{
       </div>
      `;
 
+     divElement.appendChild(innerDiv);
     fragment.appendChild(divElement);
 
   });
