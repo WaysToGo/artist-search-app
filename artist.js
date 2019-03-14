@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', ()=>
 
 // HTTP calls
 async function getAlbumsById(id){
-  const response=await fetch(`http://www.theaudiodb.com/api/v1/json/1/album.php?i=${id}`);
-  const artistResponse= await fetch(`http://www.theaudiodb.com/api/v1/json/1/artist.php?i=${id}`)
+  const response=await fetch(`https://www.theaudiodb.com/api/v1/json/1/album.php?i=${id}`);
+  const artistResponse= await fetch(`https://www.theaudiodb.com/api/v1/json/1/artist.php?i=${id}`)
   const albumData= await response.json();
   const artistData= await artistResponse.json();
   return{
@@ -21,7 +21,7 @@ async function getAlbumsById(id){
 
 }
 async function getTrackDetailsById(id){
-  const response=await fetch(`http://www.theaudiodb.com/api/v1/json/1/track.php?m=${id}`);
+  const response=await fetch(`https://www.theaudiodb.com/api/v1/json/1/track.php?m=${id}`);
 
   const trackData= await response.json();
 
